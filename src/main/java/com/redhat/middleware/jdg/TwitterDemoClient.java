@@ -34,7 +34,7 @@ import org.infinispan.api.BasicCacheContainer;
 
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
-import twitter4j.StatusListener;
+import twitter4j.StatusAdapter;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -104,9 +104,15 @@ public class TwitterDemoClient extends DelayableDemoClient<Long, Status> {
 		AccessToken accessToken = null;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (null == accessToken) {
-			logger.info("Open the following URL and grant access to your account:");
+			logger.info("---- 1. ---- EXAMPLE : Open the following URL and grant access to your api.twitter account:");
 			logger.info(requestToken.getAuthorizationURL());
-			logger.info("Enter the PIN(if aviailable) or just hit enter.[PIN]:");
+
+
+
+			logger.info("---- 2. ---- EXAMPLE : after having pasted the api.twitter... link into the browser you'll be redirected and you have to cut the last part of the new URL :");
+			logger.info("---- 3. ---- EXAMPLE : http://example.com/?oauth_token=rfTgxB7JQJNkNcy8ihGRpqLEUCTJRGJxTcn6F7k&oauth_verifier=2L9ToYavfz49Hg1NzIXGTp7c6UHuc5o1ziNhegsT4IQd");
+			logger.info("---- 4. ---- EXAMPLE : the PIN here would be 2L9ToYavfz49Hg1NzIXGTp7c6UHuc5o1ziNhegsT4IQd");
+			logger.info("Enter the PIN (as soon as you hit enter Twitter messages will fly into your data grid):");
 			String pin = br.readLine();
 			try {
 				if (pin.length() > 0) {
@@ -159,7 +165,7 @@ public class TwitterDemoClient extends DelayableDemoClient<Long, Status> {
 		this.maxEntries = maxEntries;
 	}
 
-	protected class DemoTwitterListener implements StatusListener {
+	protected class DemoTwitterListener extends StatusAdapter {
 		private final TwitterStream twitterStream;
 		private int count = 0;
 		

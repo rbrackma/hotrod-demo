@@ -43,7 +43,7 @@ public class Main {
 	 * Format port is colon delimited and address:port pairs are semicolon delimited
 	 * 	"<server1>:<port1>;<server2>:<port2>"
 	 */
-	private static final String DEFAULT_INITIAL_LIST = "127.0.0.1:11222";
+	private static final String DEFAULT_INITIAL_LIST = "127.0.0.1:11322";
 	
 	/**
 	 * Default name of the cache to use for demo

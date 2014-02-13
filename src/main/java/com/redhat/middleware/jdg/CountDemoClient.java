@@ -38,7 +38,7 @@ import org.infinispan.api.BasicCacheContainer;
 public class CountDemoClient extends DelayableDemoClient<Integer, Object> {
 	private static final Logger logger = Logger.getLogger(Main.class.getName());
 
-	private static final int DEFAULT_MAX_ENTRIES = 1000;
+	private static final int DEFAULT_MAX_ENTRIES = Integer.parseInt(System.getProperty("jdg.demo.maxEntries", "1000"));
 	private static final String DEFAULT_PAYLOAD = "Some data";
 	
 	/**

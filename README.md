@@ -34,13 +34,13 @@ The Visualizer application can be found: <https://github.com/infinispan/visual/>
 # 1. Running the Data Grid Loader
 
 ## 1.1 System requirements
- * JBoss Data Grid 6.0 or Infinispan
+ * JBoss Data Grid 6.2
  * Maven 2
 
 ## 1.2 Running the Pre-built Demo
 Assuming the project has already been build there should be a JAR that has the dependencies included in it.  Execute main class `com.redhat.middleware.jdg.Main`.  Modify the properties for your environment and preferences for loading the grid with data.
-
-	java -Djdg.demo.initialList=localhost:11223 -Djdg.demo.cacheName=labCache -Djdg.demo.maxEntries=100 -Djdg.demo.clearOnFinish=false -Djdg.demo.putDelay=0 -Djdg.demo.useTwitter=false -jar hotrod-demo-0.0.2-SNAPSHOT-jar-with-dependencies.jar
+        (11222 is standard + 100 offset)
+	java -Djdg.demo.initialList=localhost:11322 -Djdg.demo.cacheName=labCache -Djdg.demo.maxEntries=100 -Djdg.demo.clearOnFinish=false -Djdg.demo.putDelay=50 -Djdg.demo.useTwitter=false -jar hotrod-demo-0.0.2-SNAPSHOT-jar-with-dependencies.jar
 
 * **-Djdg.demo.initialList** must be set to at least one data grid node's hotrod interface. See HotRod Client documentation equivalent of: <http://docs.jboss.org/infinispan/5.1/apidocs/org/infinispan/client/hotrod/RemoteCacheManager.html#RemoteCacheManager(java.lang.String,%20boolean)/>
 * **-Djdg.demo.cacheName** must be set to the name of the cache to load the data into. All nodes in the cluster must have this cache.  There is a default cache namded `namedCache`
@@ -52,16 +52,18 @@ Assuming the project has already been build there should be a JAR that has the d
 # 2. Building
 
 ## 2.1 Configure Maven
-If not using Infinispan, everything should be good to go.
-
 If you are using JDG 6, please make sure JDG 6 repository is configured based on JDG 6 Maven 
 Repository installation instructions.  Please change the `pom.xml` so that the Infinispan 
 dependency is based on JDG 6 repository.
 
 ## 2.2 Building and Running from Source 
- 
+	(11222 is standard + 100 offset) 
+
 	mvn clean package
-	mvn exec:java -Djdg.demo.initialList=192.168.1.115:11223 -Djdg.demo.cacheName=labCache -Djdg.demo.maxEntries=1000 -Djdg.demo.clearOnFinish=false -Djdg.demo.putDelay=5 -Djdg.demo.useTwitter=false
+	mvn exec:java -Djdg.demo.initialList=localhost:11322 -Djdg.demo.cacheName=labCache -Djdg.demo.maxEntries=1000 -Djdg.demo.clearOnFinish=false -Djdg.demo.putDelay=50 -Djdg.demo.useTwitter=false
+or with Twitter
+	mvn exec:java -Djdg.demo.initialList=localhost:11322 -Djdg.demo.cacheName=labCache -Djdg.demo.maxEntries=100000 -Djdg.demo.clearOnFinish=false -Djdg.demo.putDelay=50 -Djdg.demo.useTwitter=true -Djdg.demo.consumerKey=Mu0dvJtxp7R8tLenRMtpPA -Djdg.demo.consumerSecret=FqFcDbD0T7XV4eXz6x8TvR4cxQzWRtBVCvxCqxsIQGU 
+	
 
 * **-Djdg.demo.initialList** must be set to at least one data grid node's hotrod interface. See HotRod Client documentation equivalent of: <http://docs.jboss.org/infinispan/5.1/apidocs/org/infinispan/client/hotrod/RemoteCacheManager.html#RemoteCacheManager(java.lang.String,%20boolean)/>
 * **-Djdg.demo.cacheName** must be set to the name of the cache to load the data into. All nodes in the cluster must have this cache.

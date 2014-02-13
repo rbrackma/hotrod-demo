@@ -25,8 +25,7 @@
 		<!-- This is the JDG version, please make sure JDG repository is setup 
 			(see README.md) <infinispan.version>5.1.5.FINAL</infinispan.version> -->
 
-		<!-- For JDG version, add -redhat-1 -->
-		<infinispan.version>5.2.4.Final-redhat-1</infinispan.version>
+		<infinispan.version>5.2.7.Final-redhat-2</infinispan.version>
 
 	</properties>
 	<dependencies>
@@ -38,12 +37,12 @@
 		<dependency>
 			<groupId>org.twitter4j</groupId>
 			<artifactId>twitter4j-core</artifactId>
-			<version>2.2.6</version>
+			<version>3.0.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.twitter4j</groupId>
 			<artifactId>twitter4j-stream</artifactId>
-			<version>2.2.6</version>
+			<version>3.0.5</version>
 		</dependency>
 	</dependencies>
 
